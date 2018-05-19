@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Welcome Screen</title>
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	<meta charset="utf-8" />
+
+	<script src="/cdn/libraries/jquery.min.js"></script>
+	<script src="/cdn/libraries/bootstrap.min.js"></script>
+	<script src="/cdn/libraries/tether.min.js"></script>
+	<script type="text/JavaScript" src="mainRoutes.js"></script>
+
+	<script>
+	if (pswdError == true)
+		alert("Incorrect username/password");
+	</script>
+
+	<link rel="stylesheet" href="/cdn/css/bootstrap.min.css">
+
+	<div class="jumbotron text-center">
+		<h1>RadioHack</h1>
+		<P4>Enter Login Credentials</P4>
+	</div>
+</head>
+<body>
+
+	<form action="/" method="post">
+		<div class="container text-center">
+			<div class="row-fluid">
+				<div class="col col-centered">
+					<div class="form-group align-self-center">
+						<label class="control-label">Username:</label>
+						<input id="usr" type="text" placeholder="Enter Username"  class="form-control" name="usr" required>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="col col-centered">
+					<div class="form-group align-self-center">
+						<label class="control-label">Password:</label>
+						<input id="pass" type="password" placeholder="Enter Password" class="form-control" name="pass" required>
+					</div>
+					<div class="row text-center mb-3">
+						<div class="col-7 col-centered">	
+							<label class="label">Show Password:</label>
+						</div>
+						<div class="col-1 col-centered">
+							<input type="checkbox" onclick="myFunction()">
+							<script>
+							function myFunction() {
+							    var x = document.getElementById("pass");
+							    if (x.type == "password") {
+							        x.type = "text";
+							    } else {
+							        x.type = "password";
+							    }
+							}
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center mb-3">
+				<div class="col col-centered">
+					<div class="button">
+						<button id="butLogin" type="submit" class="btn" >Log In</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class="container text-center">
+		<div class="row justify-content-center mb-3">
+			<div class="col col-centered">
+				<div class="button" onclick="document.getElementById('regForm').style.display='block'">
+					<button id="butReg" type="submit" class="btn" >Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Registration Form-->
+	<div id="regForm" class="modal">
+		<span onclick="document.getElementById('regForm').style.display='none'" class="close" 	title="Close Modal">times;</span>
+		<form class="modal-content" action="/reg" method="post">
+	    <div class="container">
+	    	<div class="col col-centered">
+		    	<h1>Sign Up</h1>
+		    	<p>Fill in Your details below and submit to join us!</p>
+		    	<hr>
+		    	<div class="row justify-content-center mb-1"> <!-- mb-4: margin{bottom}-{4}-->
+					<div class="col-3 col-centered"> <!-- col-4: Col-{width}-->
+						<label for="userReg">Username:</label>
+					</div>
+					<div class="col-6 col-centered">
+						<input type="text" placeholder="Enter Username" id="userReg" name="userReg" maxlength="30" onkeyup=limitNameSize(this) required>
+					</div>
+				</div>
+
+		    	<div class="row justify-content-center mb-1"> <!-- mb-4: margin{bottom}-{4}-->
+					<div class="col-3 col-centered"> <!-- col-4: Col-{width}-->
+		    			<label for="passwordReg">Password</label>
+					</div>
+					<div class="col-6 col-centered">
+						<input type="password"  id="passwordReg" placeholder="Enter Password" name="passwordReg" required>
+					</div>
+				</div>
+
+		    	<div class="row justify-content-center mb-1"> <!-- mb-4: margin{bottom}-{4}-->
+					<div class="col-3 col-centered"> <!-- col-4: Col-{width}-->
+		    			<label for="passRepeat">Repeat Password</label>
+					</div>
+					<div class="col-6 col-centered">
+		    			<input type="password" id="passRepeat" placeholder="Repeat Password" name="passRepeat" required>
+					</div>
+				</div>
+		    	<div class="row justify-content-center mb-1"> <!-- mb-4: margin{bottom}-{4}-->
+			    	<div class="clearfix">
+			        	<button type="button" onclick="document.getElementById('regForm').style.display='none'" class="btn">Cancel</button>
+			        	<button type="submit" onclick="checkPasswords()" id="submitReg" class="btn">Sign Up</button>
+			    	</div>
+			    </div>
+			    <!-- Check if passwords match-->
+				<script>
+					function checkPasswords(){	 		
+						if (document.getElementById("passRepeat").value != document.getElementById("passwordReg").value) {
+		    				alert( "Passwords Do Not Match! Please Try Registering Again");
+		   				}
+		   			};
+				</script>
+		    </div>
+	    </div>
+		</form>
+	</div>
+</body>
+</html>
+

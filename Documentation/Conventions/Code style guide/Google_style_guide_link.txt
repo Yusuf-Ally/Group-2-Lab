@@ -1,0 +1,4 @@
+The style guide used for this project can be accessed through the following link
+
+https://google.github.io/styleguide/jsguide.html
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Available Lists</title>
+	<meta charset="utf-8" />
+	<script src="/cdn/libraries/jquery.min.js"></script>
+	<script src="/cdn/libraries/bootstrap.min.js"></script>
+	<script src="/cdn/libraries/tether.min.js"></script>
+	<script src="/cdn/scripts/getLists.js"></script>
+	<!-- Our JavaScript code for this page-->
+	<script type='text/javascript'>
+	function limitNameSize(userInputListName) {
+		if (userInputListName.value.length == userInputListName.maxLength) {
+			alert("Item name cannot exceed 30 characters!")
+		}
+	}
+	</script>
+	<link rel="stylesheet" href="/cdn/css/bootstrap.min.css">
+	<div class="jumbotron">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col">
+					<form class="row justify-content-center" action="/logout" method="post">
+						<button type="submit" id='butLogOff' class="btnLogOff">Log Off</button>
+					</form>
+				</div>
+				<div class="col">
+					<div class="col-10 justify-content-center">
+						<h2>Component List</h2>
+						<h5 id=welcomeDisplay>Welcome,</h5>
+					</div>
+				</div>
+				<div class="col">
+					<form class="row justify-content-center" action="/lists" method="get">
+						<button type="submit" id='refresh' class="btnLogOff">Refresh Lists</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</head>
+
+<body>
+	<div class="container text-center">
+		<p>Enter the name of a new or existing list that you would like to edit:</p>
+		<form action="/createList" method="post">
+			<div>
+				<label for="newListName">List name:</label>
+				<input type="text" id="listname" name="listname" maxlength="30" onkeyup=limitNameSize(this) required>
+			</div>
+			<div class="button">
+				<button type="submit" class="btn">Submit</button>
+			</div>
+		</form>
+		<br>
+		<caption class="text-center">Available Lists</caption>
+		<table id="myLists" class="fixed">
+			<col width="450px" />
+		</table>
+	</div>
+</body>
+
+</html>
